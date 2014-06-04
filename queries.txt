@@ -1,0 +1,17 @@
+
+//Returns Kim and all her friends
+MATCH (kim:person { name:'Kim' })--(friends:person)
+RETURN kim, friends
+
+
+//Returns people who gave and received 'Difference Makers' recognition
+MATCH (program:program {name:'Difference Makers'})--(rec:recognition)--(person:person)
+RETURN program, rec, person
+
+//Returns people who received 'Difference Makers' recognition
+MATCH (program:program {name:'Difference Makers'})--(rec:recognition)-[:RECEIVES]-(person:person)
+RETURN program, rec, person
+
+//Returns friends of people who gave 'Celebrating You' recognition
+MATCH (program:program {name:'Celebrating You'})--(rec:recognition)-[:GIVES]-(person:person)-[:FRIENDS]-(friend:person)
+RETURN program, rec, person, friend
